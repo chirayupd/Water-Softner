@@ -1,0 +1,19 @@
+void setup() {
+  // put your setup code here, to run once:
+
+    //timer2
+  OCR2A = 127;  //50% duty cycle 
+  TCCR2A = _BV(COM2A0) | _BV(WGM21) | _BV(WGM20);  //toggle output, fast PWM mode 
+  TCCR2B = _BV(WGM22) | _BV(CS21) | _BV(CS20); //   fast PWM mode, prescale 1:64
+  pinMode(11, OUTPUT);
+
+}
+
+void loop()
+{
+
+  delay(200);   //duration of each frequency
+  OCR2A += 10;    //step size of frequency change
+  if(OCR2A >= 245){OCR2A = 10; }  //range of sweep, 245 is max. 
+ 
+}
